@@ -27,13 +27,16 @@ s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 s.bind((host,port)) 
 
-print 'echo_server listening on port', port
-s.listen(backlog) 
-
-while True: 
+while True:
+    print 'echo_server listening on port', port
+    s.listen(backlog) 
     client, address = s.accept()
-    data = client.recv(size) 
-    if data: 
-        client.send('scboyd: %s' % data) 
-        print 'from %s: %s' % (address, data)
-    client.close()
+    
+    while True: 
+        data = client.recv(size) 
+        if data: 
+            client.send('scboyd: %s' % data) 
+            print 'from %s: %s' % (address, data)
+        else:
+            client.close()
+            break

@@ -20,18 +20,18 @@ if nargs > 1:
 if nargs > 2:
     port = int(sys.argv[2])
 
-while True:
-    s = socket.socket(socket.AF_INET, 
+s = socket.socket(socket.AF_INET, 
                   socket.SOCK_STREAM) 
 
+s.connect((host,port)) 
 
-    s.connect((host,port)) 
+while True:
     input = raw_input("Enter text to echo: ")
     if not input:
         print "Quiting"
-        sys.exit(1)
+        s.close()
+        break 
     s.send(input)
     data = s.recv(size) 
-    s.close() 
     print 'from (%s,%s) %s' % (host, port, data)
 
