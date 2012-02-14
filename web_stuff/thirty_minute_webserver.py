@@ -102,6 +102,9 @@ def get_content(uri):
     print 'fetching:', uri
     try:
         path = '.' + uri
+        if uri.endswith('date.html')
+            return (200, 'text/html', "Stuff")
+
         if os.path.isfile(path):
             return (200, get_mime(uri), get_file(path))
         if os.path.isdir(path):
