@@ -10,7 +10,7 @@ import re
 
 def find_link(a_tag):
     http = ""
-    exp = r'href="(.+)"'
+    exp = r'href="(http.*)"'
     http = re.search(exp, a_tag).group(1)
     return http
 
